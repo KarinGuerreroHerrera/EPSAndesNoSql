@@ -74,4 +74,9 @@ public class ServicioSalud {
     public void setMedicoId(String medicoId) {
         this.medicoId = medicoId;
     }
+
+    public Object getTipo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTipo'");
+    }
 }

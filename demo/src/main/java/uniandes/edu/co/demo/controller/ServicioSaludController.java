@@ -103,4 +103,5 @@ public class ServicioSaludController {
     public ResponseEntity<List<ServicioSalud>> buscarPorNombreYIps(@RequestParam String nombre, @RequestParam String ipsId) {
         return ResponseEntity.ok(servicioSaludRepository.findByNombreAndIpsId(nombre, ipsId));
     }
+    
 }
