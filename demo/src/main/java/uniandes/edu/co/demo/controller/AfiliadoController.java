@@ -18,7 +18,7 @@ public class AfiliadoController {
     @Autowired
     private AfiliadoRepository afiliadoRepository;
 
-    // Crear un nuevo afiliado
+    // RF5
     @PostMapping("/new/save")
     public ResponseEntity<String> crearAfiliado(@RequestBody Afiliado afiliado) {
         try {
