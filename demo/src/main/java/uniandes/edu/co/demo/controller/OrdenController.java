@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import uniandes.edu.co.demo.modelo.Orden;
 import uniandes.edu.co.demo.repository.OrdenRepository;
+import uniandes.edu.co.demo.repository.AfiliadoRepository;
+import uniandes.edu.co.demo.repository.MedicoRepository;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +21,35 @@ public class OrdenController {
     @Autowired
     private OrdenRepository ordenRepository;
 
+    @Autowired
+    private AfiliadoRepository afiliadoRepository;
+
+    @Autowired
+    private MedicoRepository medicoRepository;
+
     // Crear nueva orden
     @PostMapping("/new/save")
     public ResponseEntity<String> crearOrden(@RequestBody Orden orden) {
         try {
+            // Validar existencia del afiliado
+            if (!afiliadoRepository.existsById(orden.getAfiliadoId())) {
+                return new ResponseEntity<>("Afiliado no encontrado", HttpStatus.BAD_REQUEST);
+            }
+
+            // Validar existencia del médico
+            if (!medicoRepository.existsById(orden.getMedicoId())) {
+                return new ResponseEntity<>("Médico no encontrado", HttpStatus.BAD_REQUEST);
+            }
+
+            // Validar que la lista de detalles no esté vacía
+            if (orden.getDetallesOrden() == null || orden.getDetallesOrden().isEmpty()) {
+                return new ResponseEntity<>("La orden debe contener al menos un servicio", HttpStatus.BAD_REQUEST);
+            }
+
+            // Establecer estado inicial
+            orden.setEstado("pendiente");
+
+            // Guardar la orden en la base de datos
             ordenRepository.save(orden);
             return new ResponseEntity<>("Orden creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {

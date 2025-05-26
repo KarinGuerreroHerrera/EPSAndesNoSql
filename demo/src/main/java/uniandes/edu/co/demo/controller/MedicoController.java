@@ -18,7 +18,7 @@ public class MedicoController {
     @Autowired
     private MedicoRepository medicoRepository;
 
-    // Crear un nuevo médico
+    // RF4
     @PostMapping("/new/save")
     public ResponseEntity<String> crearMedico(@RequestBody Medico medico) {
         try {

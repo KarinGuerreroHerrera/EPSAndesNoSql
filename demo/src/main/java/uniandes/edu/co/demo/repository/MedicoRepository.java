@@ -26,4 +26,8 @@ public interface MedicoRepository extends MongoRepository<Medico, String> {
     // Buscar médicos por ID de una IPS específica
     @Query("{ 'ipsIds': ?0 }")
     List<Medico> findByIpsId(String ipsId);
+
+    //RF6
+
+    
 }

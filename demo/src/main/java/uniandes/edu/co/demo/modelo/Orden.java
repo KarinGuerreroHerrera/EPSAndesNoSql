@@ -2,6 +2,7 @@ package uniandes.edu.co.demo.modelo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Document(collection = "ordenes")
 public class Orden {
@@ -12,17 +13,17 @@ public class Orden {
     private String medicoId;
     private String fechaEmision;
     private String estado;
-    private DetalleOrden detalleOrden;
+    private List<DetalleOrden> detallesOrden;
 
     public Orden() {}
 
-    public Orden(String id, String afiliadoId, String medicoId, String fechaEmision, String estado, DetalleOrden detalleOrden) {
+    public Orden(String id, String afiliadoId, String medicoId, String fechaEmision, String estado, List<DetalleOrden> detallesOrden) {
         this.id = id;
         this.afiliadoId = afiliadoId;
         this.medicoId = medicoId;
         this.fechaEmision = fechaEmision;
         this.estado = estado;
-        this.detalleOrden = detalleOrden;
+        this.detallesOrden = detallesOrden;
     }
 
     public String getId() {
@@ -65,12 +66,12 @@ public class Orden {
         this.estado = estado;
     }
 
-    public DetalleOrden getDetalleOrden() {
-        return detalleOrden;
+    public List<DetalleOrden> getDetallesOrden() {
+        return detallesOrden;
     }
 
-    public void setDetalleOrden(DetalleOrden detalleOrden) {
-        this.detalleOrden = detalleOrden;
+    public void setDetallesOrden(List<DetalleOrden> detallesOrden) {
+        this.detallesOrden = detallesOrden;
     }
 
     public static class DetalleOrden {
